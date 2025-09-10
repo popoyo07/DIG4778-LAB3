@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     void Start()
     {
-        moveSpeed = 15f; 
+        moveSpeed = 10f; 
     }
     void Update()
     {

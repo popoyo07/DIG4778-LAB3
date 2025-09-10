@@ -4,7 +4,7 @@ public class ArounTheWorld : MonoBehaviour
 {
     public int orbit;
     Vector3 offset;
-   // public float rotationSpeed;
+  //  public float rotationSpeed;
     private Vector2 rotationSpeed;
     GameObject player;
 
@@ -31,7 +31,8 @@ public class ArounTheWorld : MonoBehaviour
 
         // offset = new Vector3(orbit, 0, 0);
      
-        Quaternion rotation = Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime); // Rotate around Z-axis
+        Quaternion rotation = Quaternion.Euler(0, 0, rotationSpeed.x * Time.deltaTime); // Rotate around Z-axis
+       // Quaternion rotation = Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime); // Rotate around Z-axis
         offset = rotation * offset; 
         gameObject.transform.position = player.transform.position + offset ;
     }
