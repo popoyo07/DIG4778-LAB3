@@ -21,12 +21,14 @@ public class ArounTheWorld : MonoBehaviour
         {
            
             Rotation();
-                }
+            TheLookAtRotation();
+
+        }
     }
     public void Rotation() {
-       
-       // offset = new Vector3(orbit, 0, 0);
-       TheLookAtRotation();
+
+        // offset = new Vector3(orbit, 0, 0);
+     
         Quaternion rotation = Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime); // Rotate around Z-axis
         offset = rotation * offset; 
         gameObject.transform.position = player.transform.position + offset ;
@@ -35,9 +37,8 @@ public class ArounTheWorld : MonoBehaviour
     {
         Vector3 playerDirection = player.transform.position - transform.position;
         float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
-    
-        Quaternion rotation = Quaternion.Euler(0,0, -angle);
-        gameObject.transform.rotation = rotation;
+
+        gameObject.transform.rotation = Quaternion.Euler(0,0,angle - 90);
     }
 
 }
