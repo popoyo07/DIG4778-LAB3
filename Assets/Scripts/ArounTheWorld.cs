@@ -3,8 +3,9 @@ using UnityEngine;
 public class ArounTheWorld : MonoBehaviour
 {
     public int orbit;
-     Vector3 offset;
-    public float rotationSpeed;
+    Vector3 offset;
+   // public float rotationSpeed;
+    private Vector2 rotationSpeed;
     GameObject player;
 
     void Start()
@@ -12,6 +13,7 @@ public class ArounTheWorld : MonoBehaviour
         player = GameObject.Find("Player");
         offset = new Vector3(orbit, 0, 0);
         transform.position = player.transform.position + offset;
+        rotationSpeed = player.transform.position - transform.position;
     }
 
     // Update is called once per frame
