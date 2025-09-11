@@ -33,11 +33,11 @@ public class ArounTheWorld : MonoBehaviour
             distance = transform.position - player.transform.position;
         if (!reverse)
         {
-            orbitSpeed = 100 + distance.magnitude;
+            orbitSpeed = 50 + (distance.magnitude * 10) ;
 
         }else
         {
-            orbitSpeed = -100 - distance.magnitude; // go the oposite way 
+            orbitSpeed = -50 - (distance.magnitude * 10);  // go the oposite way 
 
         }
 
