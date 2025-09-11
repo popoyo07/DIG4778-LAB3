@@ -2,41 +2,55 @@ using UnityEngine;
 
 public class ArounTheWorld : MonoBehaviour
 {
-    public int orbit;
+    public float orbit;
     Vector3 offset;
-  //  public float rotationSpeed;
-    private Vector2 rotationSpeed;
+    public float orbitSpeed;
+    Vector3 distance;
     GameObject player;
-
+    public bool reverse;
     void Start()
     {
+
+        orbit = Random.Range(1f, 7f);
         player = GameObject.Find("Player");
         offset = new Vector3(orbit, 0, 0);
         transform.position = player.transform.position + offset;
-        rotationSpeed = player.transform.position - transform.position;
+        
+        
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         if (player != null)
         {
            
-            Rotation();
-            TheLookAtRotation();
+            OrbitAround();
+            LookRotation();
 
         }
-    }
-    public void Rotation() {
+            distance = transform.position - player.transform.position;
+        if (!reverse)
+        {
+            orbitSpeed = 100 + distance.magnitude;
 
-        // offset = new Vector3(orbit, 0, 0);
+        }else
+        {
+            orbitSpeed = -100 - distance.magnitude; // go the oposite way 
+
+        }
+
+    }
+    public void OrbitAround() 
+    {
      
-        Quaternion rotation = Quaternion.Euler(0, 0, rotationSpeed.x * Time.deltaTime); // Rotate around Z-axis
-       // Quaternion rotation = Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime); // Rotate around Z-axis
+        Quaternion rotation = Quaternion.Euler(0, 0,  orbitSpeed * Time.deltaTime); // Rotate around Z-axis
+      
         offset = rotation * offset; 
         gameObject.transform.position = player.transform.position + offset ;
     }
-    void TheLookAtRotation()
+    void LookRotation()
     {
         Vector3 playerDirection = player.transform.position - transform.position;
         float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
